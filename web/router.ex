@@ -13,8 +13,9 @@ defmodule Mealu.Router do
     plug :accepts, ["json"]
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", Mealu do
-  #   pipe_through :api
-  # end
+   scope "/api", Mealu do
+     pipe_through :api
+
+     resources "/recipes", RecipeController, only: [:create]
+   end
 end
