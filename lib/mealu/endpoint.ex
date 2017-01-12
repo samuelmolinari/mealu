@@ -1,6 +1,10 @@
 defmodule Mealu.Endpoint do
   use Phoenix.Endpoint, otp_app: :mealu
 
+  if Application.get_env(:mealu, :sql_sandbox) do
+    plug Phoenix.Ecto.SQL.Sandbox
+  end
+
   socket "/socket", Mealu.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.

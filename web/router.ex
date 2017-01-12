@@ -13,12 +13,6 @@ defmodule Mealu.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", Mealu do
-    pipe_through :browser # Use the default browser stack
-
-    get "/", PageController, :index
-  end
-
   # Other scopes may use custom stacks.
   # scope "/api", Mealu do
   #   pipe_through :api

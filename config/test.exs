@@ -12,8 +12,8 @@ config :logger, level: :warn
 # Configure your database
 config :mealu, Mealu.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
   database: "mealu_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :mealu, sql_sandbox: true
