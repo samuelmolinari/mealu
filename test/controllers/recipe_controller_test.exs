@@ -1,6 +1,5 @@
 defmodule Mealu.RecipeControllerTest do
   use Mealu.ConnCase
-  import Mealu.Factory
 
   test "#create insert a new recipe" do
     conn = build_conn()

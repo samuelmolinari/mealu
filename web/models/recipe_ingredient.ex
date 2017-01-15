@@ -17,6 +17,8 @@ defmodule Mealu.RecipeIngredient do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, ~w(quantity unit notes)a)
+    |> cast_assoc(:recipe)
+    |> cast_assoc(:ingredient)
     |> validate_required(~w(quantity unit)a)
   end
 end

@@ -42,5 +42,6 @@ defmodule Mealu.Endpoint do
     key: "_mealu_key",
     signing_salt: "NfOJTV4F"
 
+  plug CORSPlug
   plug Mealu.Router
 end

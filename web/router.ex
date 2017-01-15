@@ -13,9 +13,11 @@ defmodule Mealu.Router do
     plug :accepts, ["json"]
   end
 
-   scope "/api", Mealu do
-     pipe_through :api
+  scope "/api", Mealu do
+    pipe_through :api
 
-     resources "/recipes", RecipeController, only: [:create]
-   end
+    resources "/recipes", RecipeController, only: [:create] do
+      resources "/ingredients", IngredientController, only: [:create]
+    end
+  end
 end
