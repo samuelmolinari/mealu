@@ -9,6 +9,14 @@ defmodule Mealu.IngredientController do
     create(conn, {recipe(recipe_id), Repo.get_by(Ingredient, name: name)}, params)
   end
 
+  def delete(conn, %{"id" => ingredient_id, "recipe_id" => recipe_id}) do
+    recipe_ingredient = recipe_ingredient({recipe_id, ingredient_id})
+
+    case Repo.delete_all(from(ri in RecipeIngredient, where: ri.recipe_id == ^recipe_id and ri.ingredient_id == ^ingredient_id)) do
+      {n, _} -> render(conn, "delete.json")
+    end
+  end
+
   defp create(conn, {recipe, nil}, params) do
     changeset = RecipeIngredient.changeset(%RecipeIngredient{
                                            recipe: recipe}, params)
@@ -36,5 +44,9 @@ defmodule Mealu.IngredientController do
 
   defp recipe(id) do
     Repo.get(Recipe, id)
+  end
+
+  defp recipe_ingredient({recipe_id, ingredient_id}) do
+    Repo.get_by(RecipeIngredient, recipe_id: recipe_id, ingredient_id: ingredient_id)
   end
 end

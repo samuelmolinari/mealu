@@ -7,6 +7,10 @@ defmodule Mealu.IngredientView do
     }
   end
 
+  def render("delete.json", _) do
+    %{ok: true}
+  end
+
   def render_ingredient(ingredient) do
     %{
       name: ingredient.name
@@ -18,7 +22,10 @@ defmodule Mealu.IngredientView do
       id: recipe_ingredient.id,
       recipe_id: recipe_ingredient.recipe_id,
       ingredient_id: recipe_ingredient.ingredient_id,
-      ingredient: render_ingredient(recipe_ingredient.ingredient)
+      ingredient: render_ingredient(recipe_ingredient.ingredient),
+      quantity: recipe_ingredient.quantity,
+      unit: recipe_ingredient.unit,
+      notes: recipe_ingredient.notes
     }
   end
 end

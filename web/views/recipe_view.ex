@@ -9,7 +9,14 @@ defmodule Mealu.RecipeView do
 
   def recipe_json(recipe) do
     %{
-      name: recipe.name
+      id: recipe.id,
+      recipes_ingredients: Enum.map(
+                             recipe.recipes_ingredients,
+                             &Mealu.IngredientView.render_recipe_ingredient/1),
+      name: recipe.name,
+      preparation_time: recipe.preparation_time,
+      cooking_time: recipe.cooking_time,
+      serves: recipe.serves
     }
   end
 end

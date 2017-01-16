@@ -20,6 +20,9 @@ defmodule Mealu.IngredientControllerTest do
     assert recipe_ingredient["recipe_id"] == recipe.id
     assert recipe_ingredient["ingredient_id"] != nil
     assert recipe_ingredient["ingredient"]["name"] == "Test ingredient"
+    assert recipe_ingredient["quantity"] == 9
+    assert recipe_ingredient["unit"] == "kg"
+    assert recipe_ingredient["notes"] == "Test notes"
   end
 
   test "#create find and insert an ingredient into a recipe if it already exists" do
@@ -56,5 +59,16 @@ defmodule Mealu.IngredientControllerTest do
     response = json_response(conn, 400)
 
     assert response == %{"errors" => %{"invalid" => [%{"field" => "unit", "message" => "can't be blank"}]}}
+  end
+
+  test "#destroy delete a ingredient from a recipe" do
+    recipe_ingredient = insert(:recipe_ingredient)
+
+    conn = build_conn()
+    conn = delete conn,
+                  recipe_ingredient_path(conn, :delete, recipe_ingredient.recipe, recipe_ingredient.ingredient)
+
+    assert json_response(conn, 200) == %{"ok" => true}
+    assert Repo.get(Mealu.RecipeIngredient, recipe_ingredient.id) == nil
   end
 end

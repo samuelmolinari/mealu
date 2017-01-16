@@ -21,7 +21,7 @@ defmodule Mealu.Factory do
       recipe: build(:recipe),
       ingredient: build(:ingredient),
       quantity: 1,
-      unit: :kg,
+      unit: "kg",
       notes: "Factory note"
     }
   end

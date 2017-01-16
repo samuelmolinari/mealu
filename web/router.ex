@@ -17,7 +17,7 @@ defmodule Mealu.Router do
     pipe_through :api
 
     resources "/recipes", RecipeController, only: [:create] do
-      resources "/ingredients", IngredientController, only: [:create]
+      resources "/ingredients", IngredientController, only: [:create, :delete]
     end
   end
 end

@@ -7,6 +7,8 @@ defmodule Mealu.Recipe do
     field :cooking_time, :integer
     field :serves, :integer
 
+    has_many :recipes_ingredients, Mealu.RecipeIngredient
+
     timestamps()
   end
 

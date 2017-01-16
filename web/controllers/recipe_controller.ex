@@ -8,7 +8,7 @@ defmodule Mealu.RecipeController do
       {:ok, recipe} ->
         conn
         |> put_status(:created)
-        |> render("recipe.json", recipe: recipe)
+        |> render("recipe.json", recipe: recipe |> Repo.preload(recipes_ingredients: :ingredient))
       {:error, changeset} ->
         conn
         |> put_status(:bad_request)
