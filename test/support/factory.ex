@@ -25,4 +25,12 @@ defmodule Mealu.Factory do
       notes: "Factory note"
     }
   end
+
+  def instruction_factory do
+    %Mealu.Instruction{
+      text: "Factory text",
+      position: 0,
+      recipe: build(:recipe)
+    }
+  end
 end

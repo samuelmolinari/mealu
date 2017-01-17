@@ -18,6 +18,9 @@ defmodule Mealu.Router do
 
     resources "/recipes", RecipeController, only: [:create] do
       resources "/ingredients", IngredientController, only: [:create, :delete]
+
+      patch "/instructions/reorder", InstructionController, :reorder
+      resources "/instructions", InstructionController, only: [:create, :update]
     end
   end
 end
