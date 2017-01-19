@@ -33,4 +33,12 @@ defmodule Mealu.Factory do
       recipe: build(:recipe)
     }
   end
+
+  def meal_factory do
+    %Mealu.Meal{
+      recipe: build(:recipe),
+      due_at: Ecto.DateTime.utc,
+      serves: 2
+    }
+  end
 end
