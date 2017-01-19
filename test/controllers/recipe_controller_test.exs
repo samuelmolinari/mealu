@@ -1,5 +1,6 @@
 defmodule Mealu.RecipeControllerTest do
   use Mealu.ConnCase
+  import Mealu.Factory
 
   test "#create insert a new recipe" do
     conn = build_conn()
@@ -26,5 +27,17 @@ defmodule Mealu.RecipeControllerTest do
     response = json_response(conn, 400)
 
     assert response == %{"errors" => %{"invalid" => [%{"field" => "serves", "message" => "can't be blank"}]}}
+  end
+
+  test "#show get recipe" do
+    recipe = insert(:recipe)
+
+    conn = build_conn()
+    conn = get conn,
+               recipe_path(conn, :show, recipe)
+
+    json_recipe = json_response(conn, 200)["recipe"]
+
+    assert json_recipe["id"] == recipe.id
   end
 end

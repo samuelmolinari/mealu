@@ -15,6 +15,6 @@ defmodule Mealu.Instruction do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:text, :position])
-    |> validate_required([:text, :position])
+    |> validate_required([:position])
   end
 end

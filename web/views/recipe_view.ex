@@ -13,6 +13,8 @@ defmodule Mealu.RecipeView do
       recipes_ingredients: Enum.map(
                              recipe.recipes_ingredients,
                              &Mealu.IngredientView.render_recipe_ingredient/1),
+      instructions: Enum.map(recipe.instructions,
+                             &Mealu.InstructionView.render_instruction/1),
       name: recipe.name,
       preparation_time: recipe.preparation_time,
       cooking_time: recipe.cooking_time,
